@@ -3,7 +3,7 @@ export default class Slider {
         this.page = document.querySelector(page);
         this.slides = this.page.children;
         this.btns = document.querySelectorAll(btns);
-        this.slideIndex = 1;
+        this.slideIndex = 3;
 
     }
 
@@ -20,6 +20,21 @@ export default class Slider {
             slide.style.display = 'none'
         });
 
+        try {
+            this.hanson.style.opacity = '0';
+
+            if (n === 3) {
+                setTimeout(()=>{
+                    this.hanson.style.opacity = '1';
+                    this.hanson.classList.add('animated', 'fadeInUp');
+                }, 3000);
+                
+            }else {
+                this.hanson.style.opacity = '0';
+                this.hanson.classList.remove('fadeInUp');
+            }
+        } catch(e) {}
+
         this.slides[this.slideIndex - 1].style.display = 'block';
     }
 
@@ -28,6 +43,12 @@ export default class Slider {
     }
 
     render() {
+        try{
+            this.hanson = document.querySelector('.hanson');
+        }catch (error) {}
+
+
+        
         this.btns.forEach( item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
